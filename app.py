@@ -26,12 +26,16 @@ folium.Choropleth(
     geo_data=gdf_batas,
     name="Kerentanan Stunting",
     data=gdf_batas,
-    columns=['Kecamatan', 'Persentase_Stunting'],
-    key_on='feature.properties.Kecamatan',
+    # Ubah baris ini sesuai dengan nama kolom yang muncul di layar:
+    columns=['NAME_3', 'Balita_Stunting'], 
+    
+    # key_on juga HARUS menyesuaikan nama kolom wilayah:
+    key_on='feature.properties.NAME_3', 
+    
     fill_color='YlOrRd',
     fill_opacity=0.7,
     line_opacity=0.2,
-    legend_name='Persentase Stunting (%)'
+    legend_name='Jumlah Stunting'
 ).add_to(m)
 
 # Menambahkan Pop-up pada layer batas
