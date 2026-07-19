@@ -43,7 +43,7 @@ folium.GeoJson(
     gdf_batas,
     name="Info Wilayah",
     style_function=lambda x: {'fillColor': 'transparent', 'color': 'black', 'weight': 1},
-    tooltip=folium.GeoJsonTooltip(fields=['Kecamatan', 'Total_Balita', 'Persentase_Stunting'], 
+    tooltip=folium.GeoJsonTooltip(fields=['NAME_3', 'Total_Balita', 'Persentase_Stunting'], 
                                   aliases=['Kecamatan:', 'Total Balita:', 'Stunting (%):'])
 ).add_to(m)
 
@@ -67,7 +67,7 @@ folium.GeoJson(
     gdf_taman,
     name="Taman Bermain Anak",
     marker=folium.CircleMarker(radius=5, fill_color='green', color='black', fill_opacity=1),
-    tooltip=folium.GeoJsonTooltip(fields=['Nama_Taman'], aliases=['Nama Taman:'])
+    tooltip=folium.GeoJsonTooltip(fields=['name'], aliases=['Nama Taman:'])
 ).add_to(m)
 
 # 8. Mengaktifkan Layer Control (Tugas 2)
