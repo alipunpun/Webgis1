@@ -43,8 +43,8 @@ folium.GeoJson(
     gdf_batas,
     name="Info Wilayah",
     style_function=lambda x: {'fillColor': 'transparent', 'color': 'black', 'weight': 1},
-    tooltip=folium.GeoJsonTooltip(fields=['NAME_3', 'Total_Balita', 'Persentase_Stunting'], 
-                                  aliases=['Kecamatan:', 'Total Balita:', 'Stunting (%):'])
+    tooltip=folium.GeoJsonTooltip(fields=['NAME_3', 'Total_Balita', 'Persentase_Stunting','Balita_Stunting'], 
+                                  aliases=['Kecamatan:', 'Total Balita:', 'Stunting (%):','Jumlah Balita Stunting'])
 ).add_to(m)
 
 # 5. Menambahkan Layer Blank Spot (Merah)
@@ -61,8 +61,8 @@ folium.GeoJson(
     },
     # Jangan lupa sesuaikan 'fields' dengan nama kolom yang ada di file GeoJSON Anda
     tooltip=folium.GeoJsonTooltip(
-        fields=['NAME_3', 'Total_Balita'], 
-        aliases=['Kecamatan:', 'Jumlah Balita Rentan:']
+        fields=['NAME_3', 'Balita_Stunting'], 
+        aliases=['Kecamatan:', 'Jumlah Balita Rentan Stunting:']
     )
 ).add_to(m)
 # 6. Menambahkan Layer Buffer (Hijau Transparan)
