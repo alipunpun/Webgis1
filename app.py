@@ -18,7 +18,7 @@ gdf_buffer = gpd.read_file('buffer.geojson')
 gdf_blank = gpd.read_file('blank_spot.geojson')
 
 # 3. Membuat Peta Dasar (Berpusat di Banten)
-m = folium.Map(location=[-6.3117, 106.1116], zoom_start=10)
+m = folium.Map(location=[-6.25, 106.65], zoom_start=11, control_scale=True)
 
 # 4. Menambahkan Layer Batas Kesehatan (Gradasi Warna/Choropleth)
 # Ganti 'Persentase_Stunting' dan 'Kecamatan' sesuai nama kolom Anda di QGIS
@@ -48,12 +48,23 @@ folium.GeoJson(
 ).add_to(m)
 
 # 5. Menambahkan Layer Blank Spot (Merah)
+# Menambahkan Layer Blank Spot dengan Styling Khusus
 folium.GeoJson(
     gdf_blank,
     name="Blank Spot Taman Bermain",
-    style_function=lambda x: {'fillColor': 'red', 'color': 'red', 'weight': 2, 'fillOpacity': 0.5}
+    style_function=lambda x: {
+        'fillColor': 'red',
+        'color': '#8B0000',      # Garis tepi berwarna merah gelap (Dark Red)
+        'weight': 3,             # Ketebalan garis tepi
+        'fillOpacity': 0.15,     # Dibuat sangat transparan (15%) agar choropleth di bawahnya tembus pandang
+        'dashArray': '8, 8'      # Membuat efek garis tepi putus-putus (unik & mencolok)
+    },
+    # Jangan lupa sesuaikan 'fields' dengan nama kolom yang ada di file GeoJSON Anda
+    tooltip=folium.GeoJsonTooltip(
+        fields=['NAME_3', 'Total_Balita'], 
+        aliases=['Kecamatan:', 'Jumlah Balita Rentan:']
+    )
 ).add_to(m)
-
 # 6. Menambahkan Layer Buffer (Hijau Transparan)
 folium.GeoJson(
     gdf_buffer,
